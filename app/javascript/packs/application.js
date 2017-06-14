@@ -8,9 +8,9 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import Vue from 'vue'
+
 import VueMaterial from "vue-material"
 import "vue-material/dist/vue-material.css"
-
 Vue.use(VueMaterial)
 Vue.material.registerTheme({
   default: {
@@ -30,8 +30,8 @@ Vue.material.registerTheme({
   }
 })
 
-
 import App from './app.vue'
+import "./simple-grid.css"
 
 document.addEventListener('DOMContentLoaded', () => {
   document.body.appendChild(document.createElement('app'))
