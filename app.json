@@ -1,0 +1,7 @@
+{
+  "name": "ParaPodcast",
+  "description": "A Simple Podcast Player",
+  "repository": "https://github.com/parasquid/ParaPodcast",
+  "logo": "https://avatars0.githubusercontent.com/u/185592",
+  "keywords": ["vue", "rails", "howler", "pwa"]
+}
