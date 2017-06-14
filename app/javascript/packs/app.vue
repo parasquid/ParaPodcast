@@ -6,15 +6,11 @@
   
     <div class="container">
       <div class="row" v-for="entry in entries">
-        <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="col-xs-12 col-sm-6 col-md-6">
           {{ entry.attributes.title }}
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          {{ entry.attributes.title }}
-          <audio controls>
-            <source :src="entry.attributes.enclosure_url" :type="entry.attributes.enclosure_type">
-            Your browser does not support the audio tag.
-          </audio>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <audio-player :sources="[entry.attributes.enclosure_url]" html5></audio-player>
         </div>
       </div>
     </div>
@@ -23,6 +19,7 @@
 
 <script>
 import axios from "axios"
+import AudioPlayer from './components/audio-player.vue'
 
 export default {
   data: function () {
@@ -41,7 +38,8 @@ export default {
           this.entries = response.data
         })
     }
-  }
+  },
+  components: { AudioPlayer }
 }
 </script>
 
