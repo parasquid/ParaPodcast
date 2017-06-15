@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#fff",
   "description": "An easy to use podcast player",
-  ​​"orientation": "portrait-primary",
+  "orientation": "portrait-primary",
   "icons": [{
     "src": "/parasquid.png",
     "sizes": "48x48",
