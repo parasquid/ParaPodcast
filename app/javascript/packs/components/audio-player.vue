@@ -18,12 +18,13 @@
           min="0" max="100" step="1"
           @input="seekTo($event.target.value)"
         >
-        <button @click="togglePlayback" class="md-button md-fab md-primary md-theme-default">
+        <button @click="loadAndTogglePlayback" class="round-button md-button md-raised md-fab md-primary md-theme-default">
           <md-ink-ripple></md-ink-ripple>
+          <md-spinner class="md-accent" v-if="!playing && loading" md-indeterminate></md-spinner>
           <md-icon v-if="playing">pause</md-icon>
-          <md-icon v-else>play_arrow</md-icon>
+          <md-icon v-if="!playing && !loading">play_arrow</md-icon>
         </button>
-        <button @click="stopAndReset" class="md-button md-fab md-warn md-theme-default">
+        <button @click="stopAndReset" class="round-button md-button md-fab md-warn md-theme-default">
           <md-icon>stop</md-icon>
         </button>
       </md-card-actions>
@@ -40,7 +41,8 @@
   export default {
     data() {
       return {
-        currentProgress: this.progress || 0
+        currentProgress: this.progress || 0,
+        loading: false
       }
     },
     mixins: [VueHowler],
@@ -50,8 +52,13 @@
         this.setProgress(this.currentProgress);
       },
       stopAndReset() {
-        this.currentProgress= 0;
+        this.currentProgress = 0;
+        this.loading = false;
         this.stop();
+      },
+      loadAndTogglePlayback() {
+        this.loading = !this.loading;
+        this.togglePlayback();
       }
     },
     props: [
@@ -71,6 +78,9 @@
     .progress-slider {
       width: 100%;
       margin: 15px;
+    }
+    .round-button.md-button.md-fab {
+      width: 92px;
     }
   }
 </style>
