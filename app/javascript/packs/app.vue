@@ -12,8 +12,8 @@
             :imageSrc="entry.attributes.itunes_image"
             :title="entry.attributes.title"
             :summary="entry.attributes.summary"
-            :preload="false"
-            html5
+            :preload="true"
+            :html5="true"
           ></audio-player>
         </div>
       </div>
