@@ -4,19 +4,17 @@
       <h1 class="md-title">Para Podcast</h1>
     </md-toolbar>
   
-    <div class="container">
-      <div class="row" v-for="entry in entries">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-          <audio-player 
-            :sources="[entry.attributes.enclosure_url]"
-            :imageSrc="entry.attributes.itunes_image"
-            :title="entry.attributes.title"
-            :summary="entry.attributes.summary"
-            :preload="false"
-            :html5="true"
-          ></audio-player>
-        </div>
-      </div>
+    <div class="main-content">
+      <md-layout md-gutter v-for="entry in entries">
+        <audio-player 
+          :sources="[entry.attributes.enclosure_url]"
+          :imageSrc="entry.attributes.itunes_image"
+          :title="entry.attributes.title"
+          :summary="entry.attributes.summary"
+          :preload="true"
+          :html5="true"
+        ></audio-player>
+      </md-layout>
     </div>
   </div>
 </template>
@@ -58,7 +56,7 @@ body {
   clear: both; 
 }
 
-.container {
-  margin-top: 15px;
+.main-content {
+  padding: 12px;
 }
 </style>

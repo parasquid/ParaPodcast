@@ -31,7 +31,6 @@ Vue.material.registerTheme({
 })
 
 import App from './app.vue'
-import "./bootstrap-grid.css"
 
 document.addEventListener('DOMContentLoaded', () => {
   document.body.appendChild(document.createElement('app'))

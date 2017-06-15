@@ -14,15 +14,15 @@
 
       <md-card-actions>
         <input type="range" class="progress-slider"
-          :value="(this.currentProgress * 100)"
-          min="0" max="100" step="1"
+          :value="progress"
+          min="0" max="1" step="0.01"
           @input="seekTo($event.target.value)"
         >
         <button @click="loadAndTogglePlayback" class="round-button md-button md-raised md-fab md-primary md-theme-default">
           <md-ink-ripple></md-ink-ripple>
           <md-spinner class="md-accent" v-if="!playing && loading" md-indeterminate></md-spinner>
-          <md-icon v-if="playing">pause</md-icon>
           <md-icon v-if="!playing && !loading">play_arrow</md-icon>
+          <md-icon v-if="playing">pause</md-icon>
         </button>
         <button @click="stopAndReset" class="round-button md-button md-fab md-warn md-theme-default">
           <md-icon>stop</md-icon>
@@ -41,18 +41,22 @@
   export default {
     data() {
       return {
-        currentProgress: this.progress || 0,
         loading: false
+      }
+    },
+    watch: {
+      progress() {
+        if(this.progress == 0) {
+          this.loading = false;
+        }
       }
     },
     mixins: [VueHowler],
     methods: {
       seekTo(location) {
-        this.currentProgress = parseFloat(location / 100);
-        this.setProgress(this.currentProgress);
+        this.setProgress(parseFloat(location));
       },
       stopAndReset() {
-        this.currentProgress = 0;
         this.loading = false;
         this.stop();
       },
@@ -80,7 +84,7 @@
       margin: 15px;
     }
     .round-button.md-button.md-fab {
-      width: 92px;
+      width: 96px;
     }
   }
 </style>
