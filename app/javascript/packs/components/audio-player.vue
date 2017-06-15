@@ -66,6 +66,7 @@
       },
       stopAndReset() {
         this.loading = false;
+        this.currentProgress = 0;
         this.stop();
       },
       loadAndTogglePlayback() {
