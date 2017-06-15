@@ -14,9 +14,10 @@
 
       <md-card-actions>
         <input type="range" class="progress-slider"
-          :value="progress"
+          :value="currentProgress"
           min="0" max="1" step="0.01"
-          @input="seekTo($event.target.value)"
+          @change="seekTo($event.target.value)"
+          @input="userAction = true"
         >
         <button @click="loadAndTogglePlayback" class="round-button md-button md-raised md-fab md-primary md-theme-default">
           <md-ink-ripple></md-ink-ripple>
@@ -41,19 +42,26 @@
   export default {
     data() {
       return {
-        loading: false
+        loading: false,
+        userAction: false,
+        currentProgress: 0
       }
     },
     watch: {
       progress() {
         if(this.progress == 0) {
           this.loading = false;
+        } else {
+          if(this.userAction == false) {
+            this.currentProgress = this.progress;
+          }
         }
       }
     },
     mixins: [VueHowler],
     methods: {
       seekTo(location) {
+        this.userAction = false;
         this.setProgress(parseFloat(location));
       },
       stopAndReset() {
