@@ -14,6 +14,7 @@
           :title="entry.attributes.title"
           :summary="entry.attributes.summary"
           :preload="false"
+          :html5="true"
         ></audio-player>
       </md-layout>
     </div>
