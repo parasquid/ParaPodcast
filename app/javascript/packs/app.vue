@@ -6,11 +6,15 @@
   
     <div class="container">
       <div class="row" v-for="entry in entries">
-        <div class="col-xs-12 col-sm-6 col-md-6">
-          {{ entry.attributes.title }}
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-6">
-          <audio-player :sources="[entry.attributes.enclosure_url]" html5></audio-player>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <audio-player 
+            :sources="[entry.attributes.enclosure_url]"
+            :imageSrc="entry.attributes.itunes_image"
+            :title="entry.attributes.title"
+            :summary="entry.attributes.summary"
+            :preload="false"
+            html5
+          ></audio-player>
         </div>
       </div>
     </div>
@@ -46,16 +50,15 @@ export default {
 <style lang="scss">
 body {
   font-family: Roboto, Noto Sans, Noto, sans-serif;
-  
-  audio {
-    display: block;
-    margin: 12px 0;
-  }
 }
 
 .clearfix:after {
   content: "";
   display: table; 
   clear: both; 
+}
+
+.container {
+  margin-top: 15px;
 }
 </style>

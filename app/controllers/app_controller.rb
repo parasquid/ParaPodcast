@@ -9,13 +9,9 @@ class AppController < ApplicationController
     entries = Feedjira::Feed.parse(xml).entries
     data = entries.map { |entry|
       {
-        type: "urls",
-        attributes: {
-          title: entry.title,
-          summary: entry.summary,
-          enclosure_url: entry.enclosure_url,
-          enclosure_type: entry.enclosure_type
-        }
+        type: "entry",
+        id: entry.entry_id,
+        attributes: entry.to_h
       }
     }
     render json: data
