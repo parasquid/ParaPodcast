@@ -62,6 +62,7 @@
       },
       loadAndTogglePlayback() {
         this.loading = !this.loading;
+        this.play();
         this.togglePlayback();
       }
     },

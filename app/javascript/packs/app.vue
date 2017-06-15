@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <md-toolbar>
-      <h1 class="md-title">Para Podcast</h1>
-    </md-toolbar>
+    <div class="top-fixed">
+      <md-toolbar>
+        <h1 class="md-title">Para Podcast</h1>
+      </md-toolbar>
+    </div>
   
     <div class="main-content">
       <md-layout md-gutter v-for="entry in entries">
@@ -11,6 +13,7 @@
           :imageSrc="entry.attributes.itunes_image"
           :title="entry.attributes.title"
           :summary="entry.attributes.summary"
+          :preload="false"
         ></audio-player>
       </md-layout>
     </div>
@@ -55,6 +58,16 @@ body {
 }
 
 .main-content {
-  padding: 12px;
+  padding: 0 12px;
+  margin-top: 80px;
 }
+
+.top-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
 </style>
