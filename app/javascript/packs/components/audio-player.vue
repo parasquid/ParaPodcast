@@ -84,7 +84,8 @@
       margin: 15px;
     }
     .round-button.md-button.md-fab {
-      width: 96px;
+      min-width: 56px;
+      min-height: 56px;
     }
   }
 </style>
